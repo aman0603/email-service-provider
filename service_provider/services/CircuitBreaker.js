@@ -35,4 +35,4 @@ export class CircuitBreaker {
   getState() {
     return this.state;
   }
-}
+} 

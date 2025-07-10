@@ -40,6 +40,7 @@ const emailLogSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  
 });
 
 export const EmailLog = mongoose.model("EmailLog", emailLogSchema);
