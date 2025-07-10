@@ -79,7 +79,7 @@ npm install
 
 3️⃣ Create .env file:
 ```bash
-MONGODB_URI=your_mongodb_connection_string
+MONGO_URI=your_mongodb_connection_string
 ```
 
 4️⃣ Start the server:
