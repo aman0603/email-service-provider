@@ -30,17 +30,17 @@ It features **retry with exponential backoff**, **provider fallback**, **rate li
 ```bash
 service_provider/
 ├── models/
-|  ├── EmailLog.js
+├  ├── EmailLog.js
 ├── providers/
-|  ├── providerA.js
-|  └── providerB.js
+├  ├── providerA.js
+├  └── providerB.js
 ├── routes/
-|  └── emailRoutes.js
+├  └── emailRoutes.js
 ├── services/
-|  ├── EmailService.js
-|  ├── RateLimiter.js
-|  ├── CircuitBreaker.js
-|  └── RetryHelper.js
+├  ├── EmailService.js
+├  ├── RateLimiter.js
+├  ├── CircuitBreaker.js
+├  └── RetryHelper.js
 ├── db.js
 ├── .env
 └── server.js
@@ -68,7 +68,7 @@ service_provider/
 
 1️⃣ Clone the repo:
 ```bash
-git clone https://github.com/aman0603/email-service-provider
+git clone https://github.com/aman0603/email-service-provider.git
 cd service_provider
 ```
 
