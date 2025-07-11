@@ -36,9 +36,9 @@ export class EmailService {
       }
 
       if (existing) {
-        console.log(`🔎 Existing log found in DB:`, existing);
+        console.log(`Existing log found in DB:`, existing);
         // Handle based on existing status
-        console.log(`🔎 Existing log found: ${JSON.stringify(existing)}`);
+        console.log(`Existing log found: ${JSON.stringify(existing)}`);
         if (["SENT", "FALLBACK_USED", "PENDING"].includes(existing.status)) {
           console.log(
             `Email already sent or in progress: ${id} (status=${existing.status})`
@@ -47,7 +47,7 @@ export class EmailService {
         }
 
         console.log(
-          `⚠️ Retrying previously failed emailId: ${id} (status=${existing.status})`
+          `etrying previously failed emailId: ${id} (status=${existing.status})`
         );
 
         // Mark it as PENDING again and increment retryCount
@@ -102,12 +102,12 @@ export class EmailService {
 
         if (!breaker.canAttempt()) {
           console.warn(
-            `⚠️ Circuit breaker OPEN for ${provider.name}. Skipping.`
+            `Circuit breaker OPEN for ${provider.name}. Skipping.`
           );
           continue;
         }
 
-        console.log(`🔄 Trying provider ${provider.name} for email ${id}`);
+        console.log(`Trying provider ${provider.name} for email ${id}`);
         try {
           await retryWithBackoff(
             () =>
@@ -125,11 +125,11 @@ export class EmailService {
             }
           );
 
-          console.log(`✅ Email sent using ${provider.name}`);
+          console.log(`Email sent using ${provider.name}`);
           return;
         } catch (err) {
           breaker.recordFailure();
-          console.error(`❌ Provider ${provider.name} failed`, err.message);
+          console.error(`Provider ${provider.name} failed`, err.message);
 
           await EmailLog.findOneAndUpdate(
             { emailId: id },
@@ -148,7 +148,7 @@ export class EmailService {
       );
       throw new Error("All providers failed");
     } catch (error) {
-      console.error("❗ Unexpected error in sendEmail:", error.message);
+      console.error("Unexpected error in sendEmail:", error.message);
 
       // Best effort log update
       try {
@@ -162,7 +162,7 @@ export class EmailService {
         );
       } catch (logErr) {
         console.error(
-          "❗ Failed to update EmailLog with error:",
+          "Failed to update EmailLog with error:",
           logErr.message
         );
       }

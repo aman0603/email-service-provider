@@ -4,19 +4,14 @@ export function createEmailRoutes(emailService) {
   const router = express.Router();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  /**
-   * POST /send
-   * Body: { id, to, subject, body }
-   */
+
   router.post('/send', async (req, res) => {
     const { id, to, subject, body } = req.body;
 
-    // Validate required fields
     if (!id || !to || !subject || !body) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    // Validate email format
     if (!emailRegex.test(to)) {
       return res.status(400).json({ error: 'Invalid email address' });
     }
@@ -33,10 +28,6 @@ export function createEmailRoutes(emailService) {
     }
   });
 
-  /**
-   * GET /status/:id
-   * Params: id
-   */
   router.get('/status/:id', async (req, res) => {
     const { id } = req.params;
 

@@ -12,27 +12,22 @@ import { createEmailRoutes } from './routes/emailRoutes.js';
 
 await connectDB();
 
-// Create core service
 const providers = [new ProviderA(), new ProviderB()];
 const rateLimiter = new RateLimiter(5, 60000);
 const emailService = new EmailService(providers, rateLimiter);
 
-// Start Express
 const app = express();
 app.use(bodyParser.json());
 
-// Attach routes
 app.use('/api', createEmailRoutes(emailService));
 
-// Health Check
 app.get('/', (req, res) => {
-  res.send('✅ Email Service is Running');
+  res.send('Email Service is Running');
 });
 
-// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });
 
 //catch unhandled promise rejections

@@ -9,7 +9,7 @@ export class ProviderA {
   }
 
   async send({ to, subject, body }) {
-    if (math.random() < 0.7) {
+    if (Math.random() < 0.7) {
       console.log(`Email sent successfully using [ProviderA] to ${to}`);
     } else {
       console.log(`Failed to send email using [ProviderA] to ${to}`);
